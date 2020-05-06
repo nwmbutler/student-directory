@@ -1,27 +1,28 @@
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
+  puts "Please enter the name of a student, hit enter twice when you're finished"
   students = []
   name = gets.chomp
+  puts "Please enter a hobby"
+  hobby = gets.chomp
   while !name.empty? do
-    students << {name: name, cohort: :november}
+    students << {name: name, hobby: hobby, cohort: :november}
     puts "Now we have #{students.count} students"
     name = gets.chomp
   end
   students
 end
-def print_header
-  puts "The students of Villians Academy"
-  puts "_____________"
-end
-def print(students)
-  students.select do |student|
-  if student[:name].length <= 7
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
 
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------"
 end
+
+def print(students)
+  students.each do |student|
+    puts "#{student[:name]} hobby: #{student[:hobby]} (#{student[:cohort]} cohort)"
   end
 end
+
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
