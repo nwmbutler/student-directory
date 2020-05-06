@@ -19,17 +19,19 @@ def print_header(students)
   if students.count == 0
     puts "We currently have no students"
   else
-  puts "The students of Villians Academy".center(40)
-  puts "_____________".center(40)
-end
-end
-def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)".center(40, "*")
+  puts "The students of Villians Academy"
+  puts "_____________"
   end
 end
+
+def print(students)
+  1.times do
+    puts students.collect { |p| "#{p[:name]}: #{p[:cohort]}" }
+  end
+end
+
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students".center(40)
+  puts "Overall, we have #{students.count} great students"
 end
 
 students = input_students
