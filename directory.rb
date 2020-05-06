@@ -10,9 +10,13 @@ def input_students
   end
   students
 end
-def print_header
+def print_header(students)
+  if students.count == 0
+    puts "We currently have no students"
+  else
   puts "The students of Villians Academy"
   puts "_____________"
+end
 end
 def print(students)
   students.each do |student|
@@ -24,6 +28,6 @@ def print_footer(students)
 end
 
 students = input_students
-print_header
+print_header(students)
 print(students)
 print_footer(students)
