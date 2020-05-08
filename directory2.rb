@@ -21,9 +21,8 @@ def print_header
 end
 
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-  end
+sorted = students.sort_by { |k, v| k[:cohort] }
+puts sorted
 end
 
 def print_footer(students)
