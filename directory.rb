@@ -10,24 +10,23 @@ def input_students
   end
   students
 end
-def print_header(students)
-  if students.count == 0
-    puts "We currently have no students"
-  else
-  puts "The students of Villians Academy"
-  puts "_____________"
+
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------"
 end
-end
+
 def print(students)
   students.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
+
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
 students = input_students
-print_header(students)
+print_header
 print(students)
 print_footer(students)

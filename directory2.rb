@@ -1,32 +1,28 @@
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
   students = []
-  name = gets.chomp
-  while !name.empty? do
-    students << {name: name, cohort: :november}
-    if students.count == 1
-    puts "Now we have 1 student"
-    else
-    puts "Now we have #{students.count} students"
-    end
+  while true
+    puts "Please enter the name of the student, put stop for name and cohort to exit"
     name = gets.chomp
-  end
+    puts "Please enter the cohort"
+    cohort = gets.chomp
+    if name == "stop"
+    puts "Now we have #{students.count} students"
+    return students
+      break
+    else students << { name: name, cohort: cohort }
+    end
   students
+  end
 end
 
-def print_header(students)
-  if students.count == 0
-    puts "We currently have no students"
-  else
-  puts "The students of Villians Academy"
-  puts "_____________"
-  end
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------"
 end
 
 def print(students)
-  1.times do
-    puts students.collect { |p| "#{p[:name]}: #{p[:cohort]}" }
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
@@ -35,6 +31,6 @@ def print_footer(students)
 end
 
 students = input_students
-print_header(students)
+print_header
 print(students)
 print_footer(students)
