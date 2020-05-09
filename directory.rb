@@ -1,7 +1,7 @@
 @students = []
 
 def print_menu
-  puts "1. Input the students"
+  puts "\n1. Input the students"
   puts "2. Show the students"
   puts "3. Save the list to students.csv"
   puts "4. Load the list from students.csv"
@@ -76,6 +76,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "The file is saved \n"
 end
 
 def load_students(filename = "students.csv")
@@ -85,6 +86,7 @@ def load_students(filename = "students.csv")
     new_student(name, cohort)
   end
   file.close
+  puts "You have successfully loaded the list"
 end
 
 def try_load_students
