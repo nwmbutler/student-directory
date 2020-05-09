@@ -69,7 +69,9 @@ def new_student(name, cohort)
 end
 
 def save_students
-  file = File.open("students.csv", "w")
+  puts "what would you like to call your file, please append with .csv?"
+  file_name = gets.chomp
+  file = File.open(file_name, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
@@ -80,7 +82,9 @@ def save_students
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
+  puts "what file would you like to load"
+  load_out = gets.chomp
+  file = File.open(load_out, "r")
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
     new_student(name, cohort)
@@ -91,12 +95,14 @@ end
 
 def try_load_students
   filename = ARGV.first
-  return if filename.nil?
-  if File.exists?(filename)
+  if filename.nil?
+    load_students("students.csv")
+    puts "Default loaded"
+  elsif File.exists?(filename)
     load_students(filename)
      puts "Loaded #{@students.count} from #{filename}"
   else
-    puts "Sorry, #{filename} doesn't exist."
+    puts "something failed"
     exit
   end
 end
