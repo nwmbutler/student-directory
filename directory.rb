@@ -44,6 +44,7 @@ def input_students
 end
 
 def show_students
+  clear_terminal
   print_header
   print_student_list
   print_footer
@@ -51,7 +52,7 @@ end
 
 def print_header
   puts "The students of Villains Academy"
-  puts "-------------"
+  puts "-" * 10
 end
 
 def print_student_list
@@ -64,32 +65,38 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
+def clear_terminal
+  system("cls") || system("clear")
+end
+
 def new_student(name, cohort)
   @students << {name: name, cohort: :november}
 end
 
 def save_students
+  clear_terminal
   puts "what would you like to call your file, please append with .csv?"
   file_name = gets.chomp
-  file = File.open(file_name, "w")
+  file = File.open(file_name, "w") do |file|
+    file.puts @students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
-  file.close
+end
   puts "The file is saved \n"
 end
 
 def load_students(filename = "students.csv")
   puts "what file would you like to load"
   load_out = gets.chomp
-  file = File.open(load_out, "r")
+  file = File.open(load_out, "r") do |file|
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
     new_student(name, cohort)
   end
-  file.close
+end
   puts "You have successfully loaded the list"
 end
 
