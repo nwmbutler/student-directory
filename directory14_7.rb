@@ -89,14 +89,8 @@ end
 end
 
 def load_students(filename = "students.csv")
-  puts "what file would you like to load"
-  load_out = gets.chomp
-  file = File.open(load_out, "r") do |file|
-  file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-    new_student(name, cohort)
+  CSV.foreach("students.csv", :quote_char => "|") do |row|
   end
-end
   puts "You have successfully loaded the list"
 end
 
